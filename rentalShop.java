@@ -164,6 +164,8 @@ public class rentalShop {
                     System.out.println("Tere tulemast tagasi, " + client.getFirstName() + "!");
                     break;
                 }
+                System.out.println("Sellist isikukoodi ei leitud!");
+                break;
             }
         }
         else {
