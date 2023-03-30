@@ -1,0 +1,15 @@
+Elektritööriistad;Goblin Drill 9000;11;499.99;true
+Elektritööriistad;Power Drill;12;127;true
+Elektritööriistad;Mootorsaag;13;199.99;true
+Elektroonikatööriistad;Multimeeter;21;49.99;true
+Elektroonikatööriistad;Jootekolb;22;19.99;true
+Elektroonikatööriistad;Kuuma õhu puhur;23;100.0;true
+Abivahendid;Kolmas käsi;31;30.00;true
+Abivahendid;Aku laadija;31;50.00;true
+Abivahendid;Hüdrauliline pumb;33;700.0;true
+Autotööriistad;Käru;41;100.0;true
+Autotööriistad;Tõstuk;42;300.00;true
+Autotööriistad;Ratta vahetusvahend;43;70.00;true
+Kaitsevarustus;Keevituskindad;51;30.00;true
+Kaitsevarustus;Keevitusprillid;52;80.00;true
+Kaitsevarustus;Kiiver;53;100.00;true
