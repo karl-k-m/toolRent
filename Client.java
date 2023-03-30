@@ -5,10 +5,10 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Client {
-    private final String nationalId;   // Estonian national ID
-    private String firstName;       // First name
-    private String lastName;        // Last name
-    private double depositBalance;     // Deposit balance
+    private final String nationalId;    // Estonian national ID
+    private final String firstName;     // First name
+    private final String lastName;      // Last name
+    private double depositBalance;      // Deposit balance
 
     public Client(String nationalId, String firstName, String lastName) {
         this.nationalId = nationalId;
@@ -16,31 +16,21 @@ public class Client {
         this.lastName = lastName;
     }
 
-    public String getFirstName() {
-        return firstName;
-    }
-
     public Client(String nationalId, String firstName, String lastName, double depositBalance) {
         this.nationalId = nationalId;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.depositBalance = (double) depositBalance;
+        this.depositBalance = depositBalance;
     }
 
-    public void addTool(Tool t) {
-        int x;
-    }
-
-    public String getNationalId() {
-        return nationalId;
-    }
-
+    // Add deposit to client's deposit balance
     public void addToDepositBalance(double depositBalance) throws Exception {
         this.depositBalance += depositBalance;
         updateEntry();
     }
 
-    public void addClient() throws Exception{
+    // Add new client to clients.txt
+    public void addClient() throws Exception {
         File clientsFile = new File("clients.txt");
         FileWriter writer = new FileWriter(clientsFile, true);
         writer.write(this.nationalId + ";" + this.firstName + ";" + this.lastName + ";" + this.depositBalance + System.lineSeparator());
@@ -48,7 +38,7 @@ public class Client {
     }
 
     // Update client entry in clients.txt for changing deposit balance
-    public void updateEntry() throws Exception{
+    public void updateEntry() throws Exception {
         File clientsFile = new File("clients.txt");
         Scanner reader = new Scanner(clientsFile);
         List<String> lines = new ArrayList<>();
@@ -69,6 +59,7 @@ public class Client {
         writer.close();
     }
 
+    // Get list of tools rented by client
     public List<Tool> getRentedTools() throws Exception {
         // get tools rented by user with nationalId from tools.txt
         List<Tool> rentedTools = new ArrayList<>();
@@ -86,6 +77,14 @@ public class Client {
         }
         reader.close();
         return rentedTools;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getNationalId() {
+        return nationalId;
     }
 
     public String getLastName() {

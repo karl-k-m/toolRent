@@ -6,13 +6,11 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Tool {
-    private String category;                    // Tool category
-    private String model;                       // Tool model name
-    private final int productId;                // Product ID
-    private double price;                       // Purchase price
-    private boolean available;                  // Availability
-    private String returnDate;                  // Date to return tool
-    private String rentingClient;               // nationalId of client renting the tool
+    private final int productId;    // Product ID
+    private final String category;  // Tool category
+    private final String model;     // Tool model name
+    private final double price;     // Purchase price
+    private boolean available;      // Availability
 
     public Tool(String category, String model, int productId, double price, boolean available) {
         this.category = category;
@@ -30,29 +28,8 @@ public class Tool {
         this.available = available;
     }
 
-    public String getCategory() {
-        return category;
-    }
-
-    public String getModel() {
-        return model;
-    }
-
-    public int getProductId() {
-        return productId;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-    public double getRentalPrice() { return (double) Math.round((this.price * 0.1) * 100) / 100; }
-
-    public boolean getAvailable() {
-        return available;
-    }
-
-    // Update the entry for this tool in tools.txt
-    public void returnTool() throws Exception{
+    // Return the tool and update the entry in tools.txt
+    public void returnTool() throws Exception {
         File toolsFile = new File("tools.txt");
         Scanner reader = new Scanner(toolsFile);
         List<String> lines = new ArrayList<>();
@@ -73,11 +50,13 @@ public class Tool {
         writer.close();
     }
 
-    // Update the entry for this tool in tools.txt and rent it out.
+    // Rent the tool and update the entry in tools.txt
     public void rentOut(Client c) throws Exception {
-        this.rentingClient = c.getNationalId();
+        // nationalId of client renting the tool
+        String rentingClient = c.getNationalId();
         this.available = false;
-        this.returnDate = LocalDate.now().plusDays(7).toString();
+        // Date to return tool
+        String returnDate = LocalDate.now().plusDays(7).toString();
 
         File toolsFile = new File("tools.txt");
         Scanner reader = new Scanner(toolsFile);
@@ -86,7 +65,7 @@ public class Tool {
             String line = reader.nextLine();
             String[] parts = line.split(";");
             if (parts[0].equals(this.category) && parts[1].equals(this.model) && parts[2].equals(Integer.toString(this.productId))) {
-                line = this.category + ";" + this.model + ";" + this.productId + ";" + this.price + ";" + this.available + ";" + this.returnDate + ";" + this.rentingClient;
+                line = this.category + ";" + this.model + ";" + this.productId + ";" + this.price + ";" + this.available + ";" + returnDate + ";" + rentingClient;
             }
             lines.add(line);
         }
@@ -101,8 +80,34 @@ public class Tool {
 
     }
 
+    // Calculate the deposit for the tool
     public double calculateDeposit(double price) {
         return (double) Math.round((price * 0.3) * 100) / 100;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public String getModel() {
+        return model;
+    }
+
+    public int getProductId() {
+        return productId;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    // Get price of renting the tool for 7 days
+    public double getRentalPrice() {
+        return (double) Math.round((this.price * 0.1) * 100) / 100;
+    }
+
+    public boolean getAvailable() {
+        return available;
     }
 
 }

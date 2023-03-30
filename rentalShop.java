@@ -125,6 +125,7 @@ public class rentalShop {
         }
     }
 
+    // Return a tool
     public static void returnTool(Client c) throws Exception {
         if (c.getRentedTools().size() == 0) {
             System.out.println("Teil ei ole ühtegi renditud tööriista!");
@@ -159,8 +160,7 @@ public class rentalShop {
             String searchId = askForInput("Sisesta oma isikukood: ");
             for (Client z : clients) {
                 if (Objects.equals(z.getNationalId(), searchId)){
-                    Client c = new Client(z.getNationalId(), z.getFirstName(), z.getLastName(), z.getDepositBalance());
-                    client = c;
+                    client = new Client(z.getNationalId(), z.getFirstName(), z.getLastName(), z.getDepositBalance());
                     System.out.println("Tere tulemast tagasi, " + client.getFirstName() + "!");
                     break;
                 }
@@ -170,10 +170,9 @@ public class rentalShop {
             String firstName = askForInput("Sisesta oma eesnimi: ");
             String lastName = askForInput("Sisesta oma perekonnanimi: ");
             String nationalId = askForInput("Sisesta oma isikukood: ");
-            Client c = new Client(nationalId, firstName, lastName, 0);
-            client = c;
+            client = new Client(nationalId, firstName, lastName, 0);
             client.addClient();
-            System.out.println("Tere tulemast, " + c.getFirstName() + "!");
+            System.out.println("Tere tulemast, " + client.getFirstName() + "!");
         }
 
         while (true) {
