@@ -45,7 +45,7 @@ public class Tool {
     public double getPrice() {
         return price;
     }
-    public double getRentalPrice() { return price  * 0.1; }
+    public double getRentalPrice() { return (double) Math.round((this.price * 0.1) * 100) / 100; }
 
     public boolean getAvailable() {
         return available;
@@ -100,18 +100,9 @@ public class Tool {
         c.addToDepositBalance(calculateDeposit(this.price));
 
     }
-    public void changeAvailability(boolean available) {
-        this.available = available;
-
-        if (!available) {
-            LocalDate currentDate = LocalDate.now();
-            LocalDate returnDate = currentDate.plusDays(7);
-            this.returnDate = returnDate.toString();
-        }
-    }
 
     public double calculateDeposit(double price) {
-        return price * 0.3;
+        return (double) Math.round((price * 0.3) * 100) / 100;
     }
 
 }

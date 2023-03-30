@@ -69,6 +69,25 @@ public class Client {
         writer.close();
     }
 
+    public List<Tool> getRentedTools() throws Exception {
+        // get tools rented by user with nationalId from tools.txt
+        List<Tool> rentedTools = new ArrayList<>();
+        File toolsFile = new File("tools.txt");
+        Scanner reader = new Scanner(toolsFile);
+        while (reader.hasNextLine()) {
+            String line = reader.nextLine();
+            String[] parts = line.split(";");
+            if (parts.length > 5) {
+                if (parts[6].equals(this.nationalId)) {
+                    Tool t = new Tool(parts[0], parts[1], Integer.parseInt(parts[2]), Double.parseDouble(parts[3]), Boolean.parseBoolean(parts[4]), parts[5], parts[6]);
+                    rentedTools.add(t);
+                }
+            }
+        }
+        reader.close();
+        return rentedTools;
+    }
+
     public String getLastName() {
         return lastName;
     }
